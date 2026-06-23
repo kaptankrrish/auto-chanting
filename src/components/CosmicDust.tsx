@@ -34,7 +34,7 @@ const ParticleField = ({ theme }: { theme: string }) => {
   // Create static positions once
   const positions = useMemo(() => generateParticles(2000), []);
 
-  useFrame((state, delta) => {
+  useFrame((_state, delta) => {
     if (ref.current) {
       ref.current.rotation.x -= delta / 20;
       ref.current.rotation.y -= delta / 30;
