@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Outfit:wght@300;400;500;600&display=swap');
+
+:root {
+  /* Premium Typography */
+  --font-serif: 'Cormorant Garamond', serif;
+  --font-sans: 'Outfit', sans-serif;
+
+  /* Global Colors (Cosmic Theme Default) */
+  --bg-base: #050505;
+  --bg-surface: rgba(20, 20, 25, 0.4);
+  --bg-surface-hover: rgba(30, 30, 38, 0.6);
+  --text-primary: #f0f0f5;
+  --text-secondary: #9a9cae;
+  --accent: #8b5cf6;
+  --accent-glow: rgba(139, 92, 246, 0.4);
+  --border-subtle: rgba(255, 255, 255, 0.05);
+  --border-strong: rgba(255, 255, 255, 0.1);
+  
+  /* Layout & Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 3rem;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+
+  /* Animation */
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-theme="dawn"] {
+  --bg-base: #110808;
+  --bg-surface: rgba(35, 15, 15, 0.4);
+  --accent: #f43f5e;
+  --accent-glow: rgba(244, 63, 94, 0.4);
+}
+
+[data-theme="forest"] {
+  --bg-base: #060d09;
+  --bg-surface: rgba(15, 30, 20, 0.4);
+  --accent: #10b981;
+  --accent-glow: rgba(16, 185, 129, 0.4);
+}
+
+[data-theme="sunset"] {
+  --bg-base: #120b05;
+  --bg-surface: rgba(35, 20, 10, 0.4);
+  --accent: #f59e0b;
+  --accent-glow: rgba(245, 158, 11, 0.4);
+}
+
+/* Base Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+  transition: background-color var(--transition-slow);
+}
+
+/* Typography Utilities */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Glassmorphism Components */
+.glass-panel {
+  background: var(--bg-surface);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-md);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  transition: all var(--transition-slow);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --spacing-md: 1.5rem;
+    --spacing-lg: 3rem;
+    --spacing-xl: 6rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+    --spacing-xl: 8rem;
+  }
+}
+
+.glass-panel:hover {
+  border-color: var(--border-strong);
+  box-shadow: 0 8px 32px var(--accent-glow);
+}
+
+/* Layout System */
+.app-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  min-height: 100vh;
+  position: relative;
+  z-index: 10;
+}
+
+@media (min-width: 1024px) {
+  .app-container {
+    grid-template-columns: 380px 1fr;
+  }
+}
+
+.sidebar {
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  height: 100vh;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+.main-view {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-full);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-primary);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px var(--accent-glow);
+  filter: brightness(1.1);
+}
+
+.btn-glass {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  backdrop-filter: blur(10px);
+}
+
+.btn-glass:hover {
+  background: var(--bg-surface-hover);
+  border-color: var(--border-strong);
+}
+
+/* Canvas for 3D Background */
+.canvas-container {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: none;
+}

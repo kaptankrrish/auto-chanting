@@ -1,0 +1,16 @@
+{
+  "name": "ChantAura Meditation",
+  "short_name": "ChantAura",
+  "description": "An interactive, background-resilient name chanting counter and meditation aid.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080711",
+  "theme_color": "#8b5cf6",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3661/3661336.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
