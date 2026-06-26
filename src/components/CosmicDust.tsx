@@ -63,6 +63,20 @@ interface CosmicDustProps {
 }
 
 const CosmicDust: React.FC<CosmicDustProps> = ({ theme }) => {
+  const [webglSupported, setWebglSupported] = React.useState(true);
+
+  React.useEffect(() => {
+    try {
+      const canvas = document.createElement('canvas');
+      const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+      if (!gl) setWebglSupported(false);
+    } catch {
+      setWebglSupported(false);
+    }
+  }, []);
+
+  if (!webglSupported) return null;
+
   return (
     <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: -1, pointerEvents: 'none' }}>
       <Canvas camera={{ position: [0, 0, 8] }}>

@@ -3,6 +3,7 @@ import './index.css';
 import './App.css';
 import SacredMandala from './components/SacredMandala';
 import CosmicDust from './components/CosmicDust';
+import ErrorBoundary from './components/ErrorBoundary';
 
 interface SessionRecord {
   id: string;
@@ -648,7 +649,9 @@ const App: React.FC = () => {
 
   return (
     <>
-      <CosmicDust theme={theme} />
+      <ErrorBoundary>
+        <CosmicDust theme={theme} />
+      </ErrorBoundary>
       <div className="background-canvas"></div>
       <div className="ambient-nebulae">
         <div className="nebula-blob blob-1"></div>
